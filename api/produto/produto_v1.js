@@ -18,7 +18,7 @@ router.get('/:id', async (req, res) => {
   return res.json(dados)
 })
 
-router.get('/count', async (req, res) => {
+router.get('/count/qtd', async (req, res) => {
   let sql = `SELECT COUNT(*) QTD FROM produtos`
   let dados = await db.ExecSQL(sql, res)
   console.log('dados', dados)

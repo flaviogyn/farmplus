@@ -14,7 +14,7 @@ gulp.task("watch",  () => {
 gulp.task("server", ["watch"], () => {
     return gulp.src('public').pipe(webserver({
         livereload: true,
-        port: 3003,
+        port: 21102,
         open: true
     }))
 });

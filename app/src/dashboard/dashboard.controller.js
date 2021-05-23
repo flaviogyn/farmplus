@@ -20,7 +20,7 @@
     vm.getDashboard = function (api) {
       let url
       if(api == 1) {
-        url = `${consts.apiUrl}/produto/count`  
+        url = `${consts.apiUrl}/produto/count/qtd`  
       }
       $http.get(url).then(function (resp) {
         if (api == 1) {
