@@ -1,0 +1,68 @@
+<content-header name="Dashboard" small="Versão {{ consts.version }}"></content-header>
+
+<!-- Main content -->
+<section class="content" ng-controller="dashCtrl as vm">
+  
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3>{{ vm.total }}</h3>
+          <p>Nº Clientes</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-ios-people-outline"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-green"><i class="fa fa-handshake-o"></i></span>
+        
+        <div class="info-box-content">
+          <span class="info-box-text">Pré-validação com Reserva</span>
+          <span class="info-box-number">{{ vm.comReserva }}</span>
+          <span class="info-box-number">{{ vm.comReserva / vm.total * 100 }}%</span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-orange"><i class="fa fa-suitcase"></i></span>
+        
+        <div class="info-box-content">
+          <span class="info-box-text">Pré-validação sem Reserva</span>
+          <span class="info-box-number">{{ vm.semReserva }}</span>
+          <span class="info-box-number">{{ vm.semReserva / vm.total * 100 }}%</span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-red"><i class="fa fa-thumbs-o-down"></i></span>
+        
+        <div class="info-box-content">
+          <span class="info-box-text">Pré-validação com Reserva (Canceladas)</span>
+          <span class="info-box-number">{{ vm.canceladas }}</span>
+          <span class="info-box-number">{{ vm.canceladas / vm.total * 100 }}%</span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    
+    
+  </div>
+</section>

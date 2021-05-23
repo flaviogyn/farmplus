@@ -1,0 +1,174 @@
+<div class="row">
+  <div class="box-header with-border">
+    <div class="col-lg-8">
+      <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed"><i class="fa fa-filter"></i> Filtrar</button>
+      <button class="btn btn-default" ng-click="montaUrl('etapa', 'ComReserva')"><i class="fa fa-circle-o text-green"></i> Pré-validação com Reserva</button>
+      <button class="btn btn-default" ng-click="montaUrl('etapa', 'SemReserva')"><i class="fa fa-circle-o text-orange"></i> Pré-validação sem Reserva</button>
+      <button class="btn btn-default" ng-click="montaUrl('etapa', 'Cancelada')"><i class="fa fa-circle-o text-red"></i> Cancelar Reserva de Pré-validação</button>
+    </div>  
+    <div class="col-lg-4">
+      <div class="input-group">
+        <input type="text" ng-model="nome" class="form-control" placeholder="Busca pelo nome do cliente...">
+        <span class="input-group-btn">
+          <button class="btn btn-default" ng-click="montaUrl('pesquisar', nome)"><i class="fa fa-search"></i> Pesquisar</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div uib-collapse="isCollapsed">
+
+    <div class="panel panel-primary">
+      <div class="panel-body">
+
+          <div class="col-xs-12 col-sm-6 col-md-2">
+            <div class="form-group">
+              <label id="produto">Produto</label>
+              <select ng-model="filtro.produto" class="form-control">
+                  <option value="">-- Selecione --</option>
+                  <option ng-repeat="produto in produtos" value="{{produto.produto}}">{{produto.produto}}</option>
+              </select>
+            </div>    
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-md-2">
+            <div class="form-group">
+              <label id="etapa">Etapa</label>
+              <select ng-model="filtro.etapa" class="form-control">
+                  <option value="">-- Selecione --</option>
+                  <option ng-repeat="etapa in etapas" value="{{etapa.name}}">{{etapa.name}}</option>
+              </select>
+            </div>    
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-md-2">
+            <div class="form-group">
+              <label id="canal">Canal</label>
+              <select ng-model="filtro.canal" class="form-control">
+                  <option value="">-- Selecione --</option>
+                  <option ng-repeat="canal in canais" value="{{canal.name}}">{{canal.name}}</option>
+              </select>
+            </div>    
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-md-2">
+            <div class="form-group">
+              <label id="origem">Origem</label>
+              <select ng-model="filtro.origem" class="form-control">
+                  <option value="">-- Selecione --</option>
+                  <option ng-repeat="origem in origens" value="{{origem.name}}">{{origem.name}}</option>
+              </select>
+            </div>    
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-md-2">
+            <div class="form-group">
+              <label id="midia">Mídia</label>
+              <select ng-model="filtro.midia" class="form-control">
+                  <option value="">-- Selecione --</option>
+                  <option ng-repeat="midia in midias" value="{{midia.name}}">{{midia.name}}</option>
+              </select>
+            </div>    
+          </div>
+
+          <field id="email" label="Email" model="filtro.email" placeholder="Email do cliente" grid="12 6 2"></field>
+
+          <field id="cadastroInicial" label="Cadastro - Inicial" model="filtro.cadInicial" placeholder="Data Incial" grid="12 6 2" mask="data"></field>
+    
+          <field id="cadastroFinal" label="Cadastro - Final" model="filtro.cadFinal" placeholder="Data Final" grid="12 6 2" mask="data"></field>
+
+          <field id="telefone" label="Telefone" model="filtro.telefone" placeholder="Informe o telefone" grid="12 6 2" mask="telefone"></field>
+
+          <field id="celular" label="Celular" model="filtro.celular" placeholder="Informe o Celular" grid="12 6 2" mask="telefone"></field>
+
+          <field id="cpf" label="CPF" model="filtro.cpf" placeholder="Informe o CPF" grid="12 6 2" mask="cpf"></field>
+
+          <div class="col-xs-12 col-sm-6 col-md-2">
+            <div class="form-group">
+              <label id="atendente">Corretor/Atendente</label>
+              <select ng-model="filtro.usuario" class="form-control">
+                  <option value="">-- Selecione --</option>
+                  <option ng-repeat="item in usuarios" value="{{item._id}}">{{item.nome}}</option>
+              </select>
+            </div>    
+          </div>
+
+      </div>
+      <div class="panel-footer">
+        <button class="btn btn-primary" ng-click="montaUrl('filtro', filtro)"><i class="fa fa-search"></i> Pesquisar</button>
+        <button class="btn btn-default" ng-click="limparFiltro()"><i class="fa fa-eraser"></i> limpar</button>
+      </div>
+    </div><!--  -->
+  </div><!-- row -->
+</div> <!-- row -->
+
+<div class="row">
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Linha Crédito</th>
+          <th>Tipo Pessoa</th>
+          <th>Cliente</th>
+          <th>Fundo Garantidor</th>
+          <th>Município Agência</th>
+          <th>Dt. Operacao</th>
+          <th>Dt. Vencimento</th>
+          <th>R$ Operação Crédito</th>
+          <th>No. Reserva Pre-Validacao</th>
+          <th>R$ Total Financiado</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in crms">
+          <td style="cursor: pointer;" ng-click="showTabUpdate(crm)">
+            {{:: item.id }}
+          </td>
+          <td style="cursor: pointer; color: blue" ng-click="showTabUpdate(crm)">
+            {{:: item.api }}
+          </td>
+          <td>
+            {{:: item.codigoTipoPessoa }}
+          </td>
+          <td>
+            {{:: item.codigoIdentificadorSrf }}<br>
+          </td>
+          <td>
+            {{:: item.codigoFundoGarantidor }}
+          </td>
+          <td>
+            {{:: item.codigoIbgeMunicipioAgencia }}
+          </td>
+          <td>
+            {{:: item.dataFormalizacaoOperacao }}
+          </td>
+          <td>
+            {{:: item.dataVencimentoOperacao }}
+          </td>
+          <td>
+            {{:: item.valorOperacaoCredito }}
+          </td>
+          <td>
+            {{:: item.numeroReservaPreValidacao }}
+          </td>
+          <td>
+            {{:: item.valorTotalFinanciado }}
+          </td>
+          <td>
+            <button class="btn btn-warning btn-xs" ng-click="showTabUpdate(crm)"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-danger btn-xs" ng-click="showTabDelete(crm)"><i class="fa fa-trash-o"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="box-footer clearfix">
+     <paginator url="/#!/crm" pages="{{ pages }}"></paginator>
+  </div>
+
+</div>

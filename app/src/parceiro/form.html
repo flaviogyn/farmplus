@@ -1,0 +1,219 @@
+<div role="form" novalidade>
+  <div class="box-body">
+    
+    <field id="ID" label="ID" model="vm.crm.id" ng-init="vm.tabUpdate != true ? vm.initTabCreate() : null" grid="12 6 3" readonly="true" mask="inteiro"></field>
+    
+    <field id="cadastro" label="Cadastro" model="vm.crm.dtCadastro" grid="12 6 3" readonly="true" mask="data"></field>
+    
+    <field id="status" label="Status" model="vm.crm.statusEnvio" grid="12 6 3" readonly="true"></field>
+
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="linhaCredito">API Peac</label>
+        <select ng-model="vm.crm.idApi" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in vm.linhaPeac" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+
+    <field id="cnpjAgenteFinanceiro" label="CNPJ Agente Financeiro" model="vm.crm.cnpjAgenteFinanceiro" grid="12 6 3" readonly="true" mask="cpfcnpj"></field>
+
+    <field id="numAgenciaContratante" label="Operação agente financeiro" model="vm.crm.idOperacaoAgente" type="inteiro" placeholder="Informe a Operação Agente Financeiro" grid="12 6 3" readonly="true"></field>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="modalidade">Modalidade Operação</label>
+        <select ng-model="vm.crm.modalidade" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in vm.modalidades" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <field id="codigoIBGE" label="Código IBGE Munícipio Agência" model="vm.crm.codigoIbgeMunicipioInvestimento" type="inteiro"
+    placeholder="Informe o Código IBGE" grid="12 6 3" readonly="vm.tabDelete"></field>
+
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="cidade">CNPJ Cliente</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-search" ng-click="vm.getCpfCnpj(vm.crm.cnpjClienteFinal)"></i>
+          </div>
+            <input ng-model="vm.crm.cnpjClienteFinal" 
+                  id="cnpj" 
+                  class="form-control"
+                  placeholder="Informe CNPJ"
+                  ng-readonly="vm.tabDelete" 
+                  ui-br-cpfcnpj-mask />
+        </div>
+      </div>    
+    </div>
+    
+    <field id="cliente" label="Razão Social" model="vm.crm.razaoSocialClienteFinal" 
+    placeholder="Informe o nome do Razão Social" grid="12 6 3" readonly="vm.tabDelete"></field>
+
+    <field id="cep" label="CEP" model="vm.crm.cep"
+    placeholder="Informe o número Contrato" grid="12 6 3" readonly="vm.tabDelete" mask="cep"></field>
+
+    <field id="nomeLogradouro" label="Logradouro" model="vm.crm.nomeLogradouro" 
+    placeholder="Informe o nome Logradouro" grid="12 6 3" readonly="vm.tabDelete"></field>
+
+    <field id="numeroLogradouro" label="Número" model="vm.crm.numeroLogradouro" 
+    placeholder="Informe o nome Número" grid="12 6 3" readonly="vm.tabDelete"></field>
+
+    <field id="complemento" label="Complemento" model="vm.crm.complemento" 
+    placeholder="Informe o nome Complemento" grid="12 6 3" readonly="vm.tabDelete"></field>
+
+    <field id="nomeBairro" label="Bairro" model="vm.crm.nomeBairro" 
+    placeholder="Informe o nome Bairro" grid="12 6 3" readonly="vm.tabDelete"></field>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="estado">Estado</label>
+        <select ng-model="vm.crm.estado" class="form-control" ng-readonly="true">
+          <option value="">Selecione</option>
+          <option ng-repeat="estado in vm.estados | orderBy" ng-value="estado.sigla">{{estado.estado}}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="cidade">Cidade</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-search" ng-click="vm.getCidades()"></i>
+          </div>
+          <select ng-model="vm.crm.cidade" class="form-control">
+            <option value="">Selecione</option>
+            <option ng-repeat="cidade in vm.cidades | orderBy" ng-value="cidade.Nome">{{cidade.Nome}}</option>
+          </select>
+        </div>
+      </div>    
+    </div>
+    
+    <field id="codigoIBGE" label="Código IBGE Munícipio Cliente" model="vm.crm.codigoIbgeMunicipio" type="inteiro"
+    placeholder="Informe o Código IBGE" grid="12 6 3" readonly="vm.tabDelete"></field>
+    
+    <field id="cnaeClienteFinal" label="CNAE Cliente" model="vm.crm.cnaeClienteFinal" type="inteiro"
+    placeholder="Informe o Código CNAE" grid="12 6 3" readonly="vm.tabDelete"></field>
+    
+    <field id="cnaePortariaGrandeEmpresa" label="CNAE Port. Grande Empresa" model="vm.crm.cnaePortariaGrandeEmpresa" type="inteiro"
+    placeholder="Informe o CNAE Portaria Grande Empresa" grid="12 6 3" readonly="vm.tabDelete"></field>
+
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="tipoPessoa">Natureza Cliente</label>
+        <select ng-model="vm.crm.naturezaClienteFinal" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in vm.naturezaCliente" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+
+    <field id="contrato" label="Contrato" model="vm.crm.contrato"
+    placeholder="Informe o número Contrato" grid="12 6 3" readonly="vm.tabDelete" mask="inteiro"></field>
+
+    <field id="vlrOperCredido" label="Vlr Operação Crédito" model="vm.crm.valorOperacao"
+    placeholder="Informe o Valor Operação" grid="12 6 3" readonly="vm.tabDelete" mask="numero"></field>
+        
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="ecgDeveSerSomadoAoValorOperacao">ECG deve ser somado a operação?</label>
+        <select ng-model="vm.crm.ecgDeveSerSomadoAoValorOperacao" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in vm.EcgDeveSerSomadoAoValorOperacao" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+
+    <field id="formOperacao" label="Data Contratação" model="vm.crm.dataContratacao"
+    placeholder="Informe a data" grid="12 6 3" readonly="vm.tabDelete" mask="data"></field>
+
+    <field id="primeiraLiberacao" label="Primeira Liberação" model="vm.crm.dataPrimeiraLiberacao"
+    placeholder="Informe a data" grid="12 6 3" readonly="vm.tabDelete" mask="data"></field>
+
+    <field id="valorPrimeiraLiberacao" label="Vlr Primeira Liberação" model="vm.crm.valorPrimeiraLiberacao"
+    placeholder="Informe o Vlr Primeira Liberação" grid="12 6 3" readonly="vm.tabDelete" mask="numero"></field>
+
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="">Indexador Taxa Juros</label>
+        <select ng-model="vm.crm.indexadorTaxaJuros" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in vm.indexadorTaxaJuros" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+
+    <field id="percentualIndexador" label="% Indexador Operação" model="vm.crm.percentualIndexador"
+    placeholder="Informe % com duas casas decimais" grid="12 6 3" readonly="vm.tabDelete" mask="inteiro"></field>
+
+    <field id="taxaEfetivaAnual" label="Taxa Efetiva Anual Operação" model="vm.crm.taxaEfetivaAnual"
+    placeholder="Informe com duas casas decimais" grid="12 6 3" readonly="vm.tabDelete" mask="inteiro"></field>
+
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="">Classificação de Risco</label>
+        <select ng-model="vm.crm.riscoOperacao" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in vm.classRiscoOperacao" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+
+    <field id="receitaBrutaClienteFinal" label="Vlr Receita Bruta" model="vm.crm.receitaBrutaClienteFinal"
+    placeholder="Informe o Receita Bruta Final" grid="12 6 3" readonly="vm.tabDelete" mask="numero"></field>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="">Tipo Receita Bruta</label>
+        <select ng-model="vm.crm.tipoReceitaBruta" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in vm.tipoReceitaBruta" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <field id="dataReferenciaReceitaBruta" label="Refêrencia Receita Bruta" model="vm.crm.dataReferenciaReceitaBruta"
+    placeholder="Informe a Refêrencia Receita Bruta" grid="12 6 3" readonly="vm.tabDelete" mask="data"></field>
+
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="">Tipo Garantia</label>
+        <select ng-model="vm.crm.tipoGarantia" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in vm.tipoGarantia" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <field id="dataAmortizacao" label="Amortização" model="vm.crm.dataAmortizacao"
+    placeholder="Informe a data Amortização" grid="12 6 3" readonly="vm.tabDelete" mask="data"></field>
+
+    <field id="valorAmortizacao" label="Vlr Amortização" model="vm.crm.valorAmortizacao"
+    placeholder="Informe o Vlr Amortização" grid="12 6 3" readonly="vm.tabDelete" mask="numero"></field>
+
+    <field id="status" label="Status Operação" model="vm.crm.status" grid="12 6 3" readonly="true"></field>
+    
+  </div>
+
+  <div class="box-body">
+    <div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'danger')" close="vm.closeAlert($index)">{{alert.msg}}</div>
+  </div>
+
+  <div class="box-footer">
+    <button class="btn btn-success" ng-if="vm.tabCreate" ng-click="vm.create()">Incluir</button>
+    <button class="btn btn-info" ng-if="vm.tabUpdate" ng-click="vm.update()">Alterar</button>
+    <button class="btn btn-danger" ng-if="vm.tabDelete" ng-disabled="vm.crm.status == 'Enviado' ? true : false" ng-click="vm.delete()">Excluir</button>
+    <button class="btn btn-default" ng-click="vm.cancel()">{{ vm.tabCreate == true ? 'Limpar' : 'Cancelar' }}</button>
+    <button class="btn btn-success" ng-if="vm.tabUpdate" ng-click="vm.enviar()"><i class="fa fa-plus"></i> Enviar Cadastro para o Peac</button>
+  </div>
+  
+</div>
+
+<script type="text/ng-template" id="alert.html">
+  <div ng-transclude></div>
+</script>

@@ -1,0 +1,40 @@
+<a href class="dropdown-toggle" data-toggle="dropdown"  tooltip-placement="bottom"  uib-tooltip="Mensagens">
+  <i ng-if="vm.msgNaoLidas.length > 0" class="fa fa-envelope-o wiggle"></i>
+  <i ng-if="vm.msgNaoLidas.length === 0" class="fa fa-envelope-o"></i>
+  <span ng-if="vm.msgNaoLidas.length > 0" class="label label-default">{{ vm.msgNaoLidas.length }}</span>
+</a>
+
+<ul class="dropdown-menu">
+  <li ng-if="vm.msgNaoLidas.length > 0" class="header">Você possue {{ vm.msgNaoLidas.length }} mensagens não lidas</li>
+  <li ng-if="vm.msgNaoLidas.length > 0">
+    <ul class="menu">
+      <li ng-repeat="item in vm.msgNaoLidas">
+        <!--<a ui-sref="mensagem({  idmsg: item._id , idcrm: item._idcrm })">-->
+        <a ui-sref="mensagem">  
+          <div class="pull-left">
+            <small><i class="fa fa-clock-o"></i> {{:: item.recebida | date: "dd/MM" }}</small>
+          </div>
+          <h4>{{:: item.cliente }}</h4>
+          <p>{{:: item.mensagem }}</p>
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li class="footer">
+    <a ui-sref="mensagem"><i class="fa fa-envelope-o wiggle"></i> Todas Mensagens</a>
+  </li>
+</ul>
+
+
+  <!-- start message
+  <a href="#">
+    <div class="pull-left">
+      <img src="imgs/user.jpg" class="img-circle" alt="User Image">
+    </div>
+    <h4>
+      Support Team
+      <small><i class="fa fa-clock-o"></i> 5 mins</small>
+    </h4>
+    <p>Why not buy a new awesome theme?</p>
+  </a>
+  end message -->

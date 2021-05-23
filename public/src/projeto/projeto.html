@@ -1,0 +1,240 @@
+<div class="menu" ng-include="'src/projeto/menu.html'"></div>
+
+<style>
+  .txtEscopo {
+    width: 12em;
+    /* display: inline-block; */
+    /* white-space: nowrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* border: 1px solid #000000; */
+  }
+
+  /* 
+  .escopo:hover {
+    overflow: visible; 
+    
+  } 
+  */
+</style>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Projetos</h3>
+        <!-- <label class="col-sm-2 col-form-label label-checkbox">Filtros</label> -->
+        
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group has-success">
+              <label for="pesquisa" class="bmd-label-floating">Pesquisa por...</label>
+              <input type="text" class="form-control" id="pesquisa" ng-model="vm.criteria">
+              <span class="form-control-feedback">
+                <i class="material-icons">search</i>
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label>Gestor</label>
+              <select ng-model="vm.gestor" class="custom-select">
+                <option ng-repeat="item in vm.getGestor()">{{:: item }}</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label>Responsável</label>
+              <select ng-model="vm.resp" class="custom-select">
+                <option ng-repeat="item in vm.getResp()">{{:: item }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 checkbox-radios">
+            <div class="form-group">
+              <label>Status</label>
+              <div class="form-check">
+                <label class="form-check-label" ng-repeat="item in vm.getStatus()">
+                  <input class="form-check-input" type="checkbox" ng-model="vm.filter[item]">{{:: item }}
+                  <span class="form-check-sign">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+          </div>
+        <!-- coloca a busca por progresso e prioridade -->
+       
+      </div>
+      
+      <div class="card-body">
+        <table id="project" name="project" class="table table-striped table-responsive">
+          <thead>
+            <tr>
+              <!-- <th style="width: 1%; font-weight: bold;">#</th> -->
+              <th style="font-weight: bold;" class="text-center">
+                #
+              </th>
+              <th style="font-weight: bold;" class="text-center">
+                ID
+              </th>
+              <th style="width: 20%; font-weight: bold;">
+                Nome
+              </th>
+              <th style="font-weight: bold;" class="text-center">
+                Gestor
+              </th>
+              <th style="font-weight: bold;" class="text-center">
+                Início
+              </th>
+              <th style="font-weight: bold;" class="text-center">
+                Prevista
+              </th>
+              <th style="font-weight: bold;" class="text-center">
+                Nova Previsão
+              </th>
+              <th style="font-weight: bold;" class="text-center">
+                Conclusão
+              </th>
+              <th style="font-weight: bold;" class="text-center">
+                Equipe
+              </th>
+              <th style="font-weight: bold;">
+                Progresso
+              </th>
+              <th style="font-weight: bold;" class="text-center">
+                Status
+              </th>
+              <th style="font-weight: bold;" class="text-center">
+                Escopo
+              </th>
+              <th style="font-weight: bold;">
+                Atividades/Histórico
+              </th>
+              <!-- <th style="width: 1%"></th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr ng-repeat="item in (vm.proj | filter: {'ATIVIDADE' : vm.criteria, vm.filter}) as filteredProject">  -->
+              <!-- <tr ng-repeat="item in (vm.proj | filter: 'STATUS': 'Concluído Novo projeto') as filteredProject">   -->
+                <tr ng-repeat="item in (vm.proj | filter: vm.filterByStatus) as filteredProject"> 
+                  <!-- <td>#</td> -->
+                  <td class="text-center">
+                    <!-- <div id="colors{{ $index + 1 }}" style="position: relative; height: 20px; width: 80px;" ng-bind="vm.createRainbowDiv($index + 1, item.PRIORIDADE * 1.5, item.PRIORIDADE * 1.5)"></div> -->
+                    <div class="rounded-circle" id="colors{{ $index + 1 }}" title="{{:: item.PRIORIDADE }}%" style="border-radius: 30px; height: 30px; width: 30px;" ng-bind="vm.geraCor($index + 1, item.PRIORIDADE)"></div>
+                  </td>
+                  <td class="text-center">
+                    <a style="font-weight: bold;" class="text-center">{{:: item.SEQUENCIA }}</a>
+                  </td>
+                  <td>
+                    <a style="font-weight: bold;">{{:: item.ATIVIDADE }}</a>
+                    <br>
+                    <small id="brevedesc" style="color: #b7b7b7; cursor: default;" onmouseover="mudaCorOn(this)" onmouseout="mudaCorOff(this)" ng-bind-html="item.DESCRATIV"></small>
+                  </td>
+                  <td>
+                    <ul class="list-inline" class="text-center">
+                      <li class="list-inline-item">
+                        <img class="rounded-circle" src="{{:: item.URLSOL }}?w=40&h=40&cache=0" width="40" height="40" title="{{:: item.SOL }}"> 
+                        <!-- <img class="rounded-circle" src="{{:: item.URL }}" style="height: 40px;width: 40px;">
+                          <img class="rounded-circle" src="/assets/img/user.png" style="height: 40px;width: 40px;">
+                          <img class="rounded-circle" src="/assets/img/solicitante.png" style="height: 40px;width: 40px;"> 
+                          <label style="color: black; position: relative; font-size: small;">{{:: item.SOL }}</label>--> 
+                          <label style="color: transparent; position: absolute; font-size: small; text-align: center;">{{:: item.SOL }}</label> 
+                        </li>
+                      </ul>
+                    </td>
+                    <td class="text-center">
+                      {{:: item.DTINICIO | date: "dd/MM/yyyy" }}
+                    </td>
+                    <td class="text-center">
+                      {{:: item.DTFINAL | date: "dd/MM/yyyy" }}
+                    </td>
+                    <td class="text-center">
+                      {{:: item.DTNOVAPREV | date: "dd/MM/yyyy" }}
+                    </td>
+                    <td class="text-center">
+                      {{:: item.DTCONCLUIDO | date: "dd/MM/yyyy" }}
+                    </td>
+                    <td>
+                      <ul class="list-inline" class="text-center">
+                        <li class="list-inline-item">
+                          <img class="rounded-circle" src="{{:: item.URL }}?w=40&h=40&cache=0" width="40" height="40" title="{{:: item.RESP }}"> 
+                          <label style="color: transparent; position: absolute; font-size: small; text-align: center;">{{:: item.RESP }}</label> 
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      <div class="progress">
+                        <div class="progress-bar bg-green" role="progressbar" aria-volumenow="{{:: item.PERCENTUAL }}" aria-volumemin="0" aria-volumemax="100" style="width: {{:: item.PERCENTUAL }}%">
+                        </div>
+                      </div>
+                      <small>
+                        {{ :: item.PERCENTUAL }}%
+                      </small>
+                    </td>
+                    <td class="text-center">
+                      <span class="badge badge-{{ item.COR == '#008000' ? 'success' : item.COR == '#FFD700' ? 'warning' : item.COR == '#808080' ? 'default' : 'info' }}">{{:: item.STATUS }}</span>
+                    </td>
+                    <!-- <td class="txtescopo" data-toggle="modal" data-target="#exampleModal" ng-click="vm.chamaHist(item.ESCOPO, item.ATIVIDADE)">
+                      {{:: item.ESCOPO}}
+                    </td> -->
+                    <td class="text-center">
+                      <button class="btn btn-{{ item.ESCOPO == null ? 'default' : 'info' }} btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#exampleModal" ng-click="vm.chamaHist(item.ESCOPO, item.ATIVIDADE)">
+                        <i class="material-icons">description</i>
+                      </button>
+                    </td>
+                    <td class="text-left txtEscopo" ng-bind-html="item.DESCRICAO"></td>
+                    <!-- <td class="text-center">
+                      <a href="#" class="btn btn-link btn-warning btn-just-icon edit">
+                        <i class="material-icons">more_horiz</i>
+                      </a>
+                    </td> -->
+                  </tr>
+                </tbody>
+                
+              </table>
+              <span class="badge badge-default">Total Projetos: {{ filteredProject.length }}</span>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+          
+        </div>
+      </div>
+      
+      <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="projeto" style="font-weight: bold;">Projeto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="height: 80%;overflow-y: auto">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title" style="font-weight: bold;">Escopo</h4>
+                  </div>
+                  <div class="card-body">
+                    <span id="escopo"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  

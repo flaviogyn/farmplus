@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="box-header with-border">
+    <div class="col-lg-8">
+      <button class="btn btn-default" ng-click="vm.getPeac()"><i class="fa fa-refresh"></i> </button>
+      <button class="btn btn-default" ng-click="vm.getApi(1)"><i class="fa fa-circle-o text-green"></i> Outorga de Garantia</button>
+    </div>  
+    <div class="col-lg-4">
+      <div class="input-group">
+        <input type="text" ng-model="criteria" class="form-control" placeholder="Pesquisar no grid...">
+        <span class="input-group-btn">
+          <button class="btn btn-default"><i class="fa fa-search"></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Linha Crédito</th>
+          <th>Status Envio</th>
+          <th>Contrato</th>
+          <th>Cliente</th>
+          <th>CNPJ/CPF</th>
+          <th>Cód. IBGE</th>
+          <th>Cidade</th>
+          <th>Estado</th>
+          <th>Dt. Contratação</th>
+          <th>R$ 1a Liberação</th>
+          <th>Status Retorno</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in vm.crms | filter:criteria">
+          <td style="cursor: pointer;" ng-click="vm.showTabUpdate(item)">
+            {{:: item.id }}
+          </td>
+          <td style="cursor: pointer; color: blue" ng-click="vm.showTabUpdate(item)">
+            {{:: vm.getId(vm.linhaPeac, item.idApi) }}
+          </td>
+          <td>
+            {{:: item.statusEnvio }}
+          </td>
+          <td>
+            {{:: item.contrato }}
+          </td>
+          <td>
+            {{:: item.razaoSocialClienteFinal }}
+          </td>
+          <td>
+            {{:: item.cnpjClienteFinal }}<br>
+          </td>
+          <td>
+            {{:: item.codigoIbgeMunicipio }}
+          </td>
+          <td>
+            {{:: item.cidade }}
+          </td>
+          <td>
+            {{:: item.estado }}
+          </td>
+          <td>
+            {{:: item.dataContratacao | date: "dd/MM/yyyy" }}
+          </td>
+          <td>
+            {{:: item.valorPrimeiraLiberacao | currency }}
+          </td>
+          <td>
+            {{:: item.status }}
+          </td>
+          <td>
+            <button class="btn btn-warning btn-xs" ng-click="vm.showTabUpdate(item)"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-danger btn-xs" ng-click="vm.showTabDelete(item)"><i class="fa fa-trash-o"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="box-footer clearfix">
+     <paginator url="/#!/peac" pages="{{ pages }}"></paginator>
+  </div>
+
+</div>

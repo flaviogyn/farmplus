@@ -1,0 +1,285 @@
+/* google map 
+
+.angular-google-map-container { height: 400px; }*/
+
+.wiggle{
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
+    -webkit-transform:translateZ(0);
+    transform:translateZ(0);
+    -webkit-animation-name:wiggle;
+    animation-name:wiggle;
+    -webkit-animation-duration:10s;
+    animation-duration:10s;
+    -webkit-animation-timing-function:linear;
+    animation-timing-function:linear;
+    -webkit-animation-iteration-count:infinite;
+    animation-iteration-count:infinite;
+    -webkit-animation-play-state:running animation-play-state: running
+    }@-webkit-keyframes wiggle{2%,6%{-webkit-transform:translateX(3px) rotate(2deg);
+        transform:translateX(3px) rotate(2deg)}4%,8%{-webkit-transform:translateX(-3px) rotate(-2deg);
+            transform:translateX(-3px) rotate(-2deg)}10%,14%{-webkit-transform:translateX(2px) rotate(1deg);
+                transform:translateX(2px) rotate(1deg)}12%,16%{-webkit-transform:translateX(-2px) rotate(-1deg);
+                    transform:translateX(-2px) rotate(-1deg)}18%{-webkit-transform:translateX(1px) rotate(0);
+                        transform:translateX(1px) rotate(0)}20%{-webkit-transform:translateX(-1px) rotate(0);
+                            transform:translateX(-1px) rotate(0)}}@keyframes wiggle{2%,6%{-webkit-transform:translateX(3px) rotate(2deg);
+                                transform:translateX(3px) rotate(2deg)}4%,8%{-webkit-transform:translateX(-3px) rotate(-2deg);
+                                    transform:translateX(-3px) rotate(-2deg)}10%,14%{-webkit-transform:translateX(2px) rotate(1deg);
+                                        transform:translateX(2px) rotate(1deg)}12%,16%{-webkit-transform:translateX(-2px) rotate(-1deg);
+                                            transform:translateX(-2px) rotate(-1deg)}18%{-webkit-transform:translateX(1px) rotate(0);
+                                                transform:translateX(1px) rotate(0)}20%{-webkit-transform:translateX(-1px) rotate(0);
+                                                    transform:translateX(-1px) rotate(0)}}
+
+
+/* ng-blur */
+.error {
+    border-color: red;
+}
+
+/* chat designer */
+
+.chatx {
+    z-index: 100;
+    bottom: 5px;
+    right: 0;
+    left: 0;
+    text-align: right;
+    background: transparent;
+    border: none;
+}
+.chatx a {
+    height: 30px;
+    color: #fff;
+    font-size: 0.9em;
+    background: rgba(255, 38, 38, .9);
+    border: none;
+    font-weight: 500;
+}
+.chatx span {
+    margin-right: 3px;
+}
+
+/* chat sbadmin */
+
+.chat-header {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.chat {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.chat li {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #999;
+}
+
+.chat li.left .chat-body {
+    margin-left: 60px;
+}
+
+.chat li.right .chat-body {
+    margin-right: 60px;
+    background-color:  rgba(255,255,255,.5);
+}
+
+.chat li .chat-body p {
+    margin: 0;
+}
+
+.panel .slidedown .glyphicon,
+.chat .glyphicon {
+    margin-right: 5px;
+}
+
+.chat-panel .panel-body {
+    height: 350px;
+    overflow-y: scroll;
+}
+
+/* calendario */
+.calBlue {
+  background-color: blue;
+  color: white;
+}
+
+.calOrange {
+  background-color: orange;
+  color: black;
+}
+
+.calGreen{
+  background-color: green;
+  color: black;
+}
+
+.calRed {
+  background-color: red;
+  color: white;
+}
+
+/* editor textAngular */
+.ta-editor.form-control.myform1-height, .ta-scroll-window.form-control.myform1-height  {
+    min-height: 100px;
+    height: 100px;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+}
+
+.ta-editor.custon  {
+    min-height: 300px;
+    height: auto;
+    width: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+}
+
+.form-control.myform1-height > .ta-bind {
+    height: auto;
+    min-height: 100px;
+    padding: 6px 12px;
+}
+
+/* post-it */
+/* @import url(http://fonts.googleapis.com/css?family=Satisfy; */
+
+@font-face {
+    font-family: mySatisfy;
+    src: url(http://fonts.googleapis.com/css?family=Satisfy);
+}
+
+.quote-container {
+  margin-top: 50px;
+  position: relative;
+  cursor: pointer;
+}
+
+.note {
+  color: #333;
+  position: relative;
+  width: 250px;
+  margin: 0 auto;
+  padding: 20px;
+  /* font-family: mySatisfy; */
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 20 px;
+  box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
+}
+
+.note .author {
+  display: block;
+  margin: 40px 0 0 0;
+  text-align: right;
+  font-size: 12px;
+}
+
+.yellow {
+  background: #eae672;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+
+.orange {
+  background: orange;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+
+.blue {
+  background: #3366FF;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+
+.green {
+  background: #99CC32;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+
+.grey {
+  background: #545454;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+
+.white {
+  background: white;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+
+.pin {
+  background-color: #aaa;
+  display: block;
+  height: 32px;
+  width: 2px;
+  position: absolute;
+  left: 50%;
+  top: -16px;
+  z-index: 1;
+}
+
+.pin:after {
+  background-color: #A31;
+  background-image: radial-gradient(25% 25%, circle, hsla(0,0%,100%,.3), hsla(0,0%,0%,.3));
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.1),
+              inset 3px 3px 3px hsla(0,0%,100%,.2),
+              inset -3px -3px 3px hsla(0,0%,0%,.2),
+              23px 20px 3px hsla(0,0%,0%,.15);
+  content: '';
+  height: 12px;
+  left: -5px;
+  position: absolute;
+  top: -10px;
+  width: 12px;
+}
+
+.pin:before {
+  background-color: hsla(0,0%,0%,0.1);
+  box-shadow: 0 0 .25em hsla(0,0%,0%,.1);
+  content: '';
+
+  height: 24px;
+  width: 2px;
+  left: 0;
+  position: absolute;
+  top: 8px;
+
+  transform: rotate(57.5deg);
+  -moz-transform: rotate(57.5deg);
+  -webkit-transform: rotate(57.5deg);
+  -o-transform: rotate(57.5deg);
+  -ms-transform: rotate(57.5deg);
+
+  transform-origin: 50% 100%;
+  -moz-transform-origin: 50% 100%;
+  -webkit-transform-origin: 50% 100%;
+  -ms-transform-origin: 50% 100%;
+  -o-transform-origin: 50% 100%;
+}
+

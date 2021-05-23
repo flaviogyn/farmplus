@@ -1,0 +1,128 @@
+<div class="row">
+  <div class="box-header with-border">
+    <div class="col-lg-8">
+      <!-- <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed"><i class="fa fa-filter"></i> Filtrar</button> -->
+      <button class="btn btn-default" ng-click="getPronampe()"><i class="fa fa-refresh"></i> </button>
+      <button class="btn btn-default" ng-click="getApi(1)"><i class="fa fa-circle-o text-green"></i> Pré-validação com Reserva</button>
+      <button class="btn btn-default" ng-click="getApi(2)"><i class="fa fa-circle-o text-orange"></i> Pré-validação sem Reserva</button>
+      <button class="btn btn-default" ng-click="getApi(3)"><i class="fa fa-circle-o text-red"></i> Reservas Canceladas</button>
+    </div>  
+    <div class="col-lg-4">
+      <div class="input-group">
+        <input type="text" ng-model="criteria" class="form-control" placeholder="Pesquisar no grid...">
+        <span class="input-group-btn">
+          <button class="btn btn-default"><i class="fa fa-search"></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div uib-collapse="isCollapsed">
+
+    <div class="panel panel-primary">
+      <div class="panel-body">
+
+          <field id="cadastroInicial" label="Cadastro Inicial" model="filtro.cadInicial" placeholder="Data Incial"
+             grid="12 6 3" mask="data"></field>
+    
+          <field id="cadastroFinal" label="Cadastro Final" model="filtro.cadFinal" placeholder="Data Final"
+             grid="12 6 3" mask="data"></field>
+
+          <field id="cpf" label="CPF/CNPJ" model="filtro.cpf" 
+             placeholder="Informe o CPF" grid="12 6 3" mask="cpfcnpj"></field>
+
+      </div>
+      <div class="panel-footer">
+        <button class="btn btn-primary" ng-click="montaUrl('filtro', filtro)"><i class="fa fa-search"></i> Pesquisar</button>
+        <button class="btn btn-default" ng-click="limparFiltro()"><i class="fa fa-eraser"></i> limpar</button>
+      </div>
+    </div><!--  -->
+  </div><!-- row -->
+</div> <!-- row -->
+
+<div class="row">
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Linha Crédito</th>
+          <th>Status</th>
+          <th>Tipo Pessoa</th>
+          <th>Contrato</th>
+          <th>Cliente</th>
+          <th>CNPJ/CPF</th>
+          <th>Cód. IBGE</th>
+          <th>Cidade</th>
+          <th>Estado</th>
+          <th>Dt. Operacao</th>
+          <th>Dt. Vencimento</th>
+          <th>R$ Operação Crédito</th>
+          <th>No. Reserva Pre-Validacao</th>
+          <th>R$ Total Financiado</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in crms | filter:criteria">
+          <td style="cursor: pointer;" ng-click="showTabUpdate(item)">
+            {{:: item.id }}
+          </td>
+          <td style="cursor: pointer; color: blue" ng-click="showTabUpdate(item)">
+            {{:: getId(linhaCredito, item.idApi) }}
+          </td>
+          <td>
+            {{:: item.status }}
+          </td>
+          <td>
+            {{:: getId(tipoPessoa, item.codigoTipoPessoa) }}
+          </td>
+          <td>
+            {{:: item.contrato }}
+          </td>
+          <td>
+            {{:: item.cliente }}
+          </td>
+          <td>
+            {{:: item.codigoIdentificadorSrf }}</br>
+          </td>
+          <td>
+            {{:: item.codigoIbgeMunicipioAgencia }}
+          </td>
+          <td>
+            {{:: item.cidade }}
+          </td>
+          <td>
+            {{:: item.estado }}
+          </td>
+          <td>
+            {{:: item.dataFormalizacaoOperacao | date: "dd/MM/yyyy" }}
+          </td>
+          <td>
+            {{:: item.dataVencimentoOperacao | date: "dd/MM/yyyy" }}
+          </td>
+          <td>
+            {{:: item.valorOperacaoCredito | currency }}
+          </td>
+          <td>
+            {{:: item.numeroReservaPreValidacao }}
+          </td>
+          <td>
+            {{:: item.valorTotalFinanciado | currency }}
+          </td>
+          <td>
+            <button class="btn btn-warning btn-xs" ng-click="showTabUpdate(item)"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-danger btn-xs" ng-click="showTabDelete(item)"><i class="fa fa-trash-o"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="box-footer clearfix">
+     <paginator url="/#!/pronampe" pages="{{ pages }}"></paginator>
+  </div>
+
+</div>

@@ -1,0 +1,210 @@
+<div role="form" novalidade>
+  <div class="box-body">
+    
+    <field id="ID" label="ID" model="crm.id" ng-init="tabUpdate != true ? initTabCreate() : null" grid="12 6 3" readonly="true" mask="inteiro"></field>
+    
+    <field id="cadastro" label="Cadastro" model="crm.dtCadastro" grid="12 6 3" readonly="true" mask="data"></field>
+    
+    <field id="status" label="Status" model="crm.status" grid="12 6 3" readonly="true"></field>
+
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="linhaCredito">API Pronampe</label>
+        <select ng-model="crm.idApi" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in linhaCredito" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="fundoGarantidor">Fundo Garantidor</label>
+        <select ng-model="crm.codigoFundoGarantidor" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in fundoGarantidor" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <field id="numAgenciaContratante" label="Agência Contratante" model="crm.numeroAgenciaContratanteOperacao" type="inteiro" placeholder="Informe o Agência Contratante" grid="12 6 3" readonly="true"></field>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="estado">Estado</label>
+        <select ng-model="crm.estado" class="form-control" ng-readonly="true">
+          <option value="">Selecione</option>
+          <option ng-repeat="estado in estados | orderBy" ng-value="estado.sigla">{{estado.estado}}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="cidade">Cidade</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-search" ng-click="getCidades()"></i>
+          </div>
+          <select ng-model="crm.cidade" class="form-control">
+            <option value="">Selecione</option>
+            <option ng-repeat="cidade in cidades | orderBy" ng-value="cidade.Nome">{{cidade.Nome}}</option>
+          </select>
+        </div>
+      </div>    
+    </div>
+    
+    <field id="codigoIBGE" label="Código IBGE Munícipio" model="crm.codigoIbgeMunicipioAgencia" type="inteiro" placeholder="Informe o Código IBGE" grid="12 6 3" readonly="tabDelete"></field>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="tipoPessoa">Tipo Pessoa</label>
+        <select ng-model="crm.codigoTipoPessoa" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in tipoPessoa" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="cidade">CPF/CNPJ</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-search" ng-click="getCpfCnpj(crm.codigoIdentificadorSrf)"></i>
+          </div>
+            <input ng-model="crm.codigoIdentificadorSrf" id="cpfcnpj" class="form-control" placeholder="Informe o CPF ou CNPJ" ng-readonly="tabDelete" ui-br-cpfcnpj-mask>
+        </div>
+      </div>    
+    </div>
+
+    <field id="contrato" label="Contrato" model="crm.contrato" placeholder="Informe o número Contrato" grid="12 6 3" readonly="tabDelete" mask="inteiro"></field>
+
+    <field id="cliente" label="Cliente" model="crm.cliente" placeholder="Informe o nome do Cliente" grid="12 6 3" readonly="tabDelete"></field>
+
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="">Público Alvo</label>
+        <select ng-model="crm.codigoTipoPublicoAlvo" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in tipoPublicoAlvo" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <field id="vlrFaturAnual" label="Vlr Faturamento Anual" model="crm.valorFaturamentoBrutoAnual" placeholder="Informe o Faturamento Anual" grid="12 6 3" readonly="tabDelete" mask="numero"></field>
+    
+    <field id="vlrOperCredido" label="Vlr Operação Crédito" model="crm.valorOperacaoCredito" placeholder="Informe o Valor Operação" grid="12 6 3" readonly="tabDelete" mask="numero"></field>
+    
+    <field id="percGarantiaFGO" label="Percentual da garantia FGO" model="crm.percentualGarantiaOperacaoCredito" placeholder="Informe % Garantia com duas casas decimais" grid="12 6 3" readonly="tabDelete" mask="inteiro"></field>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="">Tipo Modalidade Crédito</label>
+        <select ng-model="crm.codigoTipoModalidadeCredito" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in tipoModalidadeCredito" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="">Tipo Finalidade Crédito</label>
+        <select ng-model="crm.codigoTipoFinalidadeCredito" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in tipoFinalidadeCredito" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="">Tipo Fonte Recurso</label>
+        <select ng-model="crm.codigoTipoFonteRecurso" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in tipoFonteRecurso" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="">Tipo Programa de Crédito</label>
+        <select ng-model="crm.codigoTipoProgramaCredito" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in tipoProgramaCredito" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <field id="formOperacao" label="Formalização Operação" model="crm.dataFormalizacaoOperacao" placeholder="Informe a Operação" grid="12 6 3" readonly="tabDelete" mask="data"></field>
+    
+    <field id="venctoOperacao" label="Vencimento Operação" model="crm.dataVencimentoOperacao" placeholder="Informe o Vencimento" grid="12 6 3" readonly="tabDelete" mask="data"></field>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="">Cronograma Amortização</label>
+        <select ng-model="crm.codigoTipoCronogramaAmortizacao" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in tipoCronogramaAmortizacao" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="">Tipo Condição Especial</label>
+        <select ng-model="crm.codigoTipoCondicaoEspecial" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in tipoCondicaoEspecial" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <field id="venctoOperacao" label="Despacho Externo" model="crm.dataDespachoExternoOperacao" placeholder="Informa data despacho externo" grid="12 6 3" readonly="true" mask="data"></field>
+    
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <label id="">Tipo Formalização</label>
+        <select ng-model="crm.codigoTipoFormalizacao" class="form-control">
+          <option value="">Selecione</option>
+          <option ng-repeat="item in tipoFormalizacao" ng-value="item.id">{{ item.name }}</option>
+        </select>
+      </div>    
+    </div>
+    
+    <field id="percGarantiaFGO" label="No. Reserva da Pré-Validação" model="crm.numeroReservaPreValidacao" grid="12 6 3" readonly="true" mask="inteiro"></field>
+    
+    <field id="vlrTotalFinanciado" label="Vlr Total já Financiado" model="crm.valorTotalFinanciado" grid="12 6 3" readonly="true" mask="numero"></field>
+    
+  </div>
+
+  <!-- <div class="box-body">
+    <div class="alert alert-danger alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+      Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my entire
+      soul, like these sweet mornings of spring which I enjoy with my whole heart.
+    </div>
+  </div> -->
+
+  <div class="box-body">
+    <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'danger')" close="closeAlert($index)">{{alert.msg}}</div>
+  </div>
+
+  <div class="box-footer">
+    <button class="btn btn-success" ng-if="tabCreate" ng-click="create()">Incluir</button>
+    <!-- <button class="btn btn-info" ng-if="tabUpdate" ng-disabled="crm.status == 'Enviado' ? (crm.contrato == null ? false : true) : false" ng-click="update()">Alterar</button> -->
+    <button class="btn btn-info" ng-if="tabUpdate" ng-click="update()">Alterar</button>
+    <button class="btn btn-danger" ng-if="tabDelete" ng-disabled="crm.status == 'Enviado' ? true : false" ng-click="delete()">Excluir</button>
+    <button class="btn btn-default" ng-click="cancel()">{{ tabCreate == true ? 'Limpar' : 'Cancelar' }}</button>
+    <!-- <button class="btn btn-success" ng-if="tabUpdate"  ng-disabled="crm.status == 'Enviado' ? true : false" ng-click="enviar()"><i class="fa fa-plus"></i> Enviar Cadastro para o PRONAMPE</button> -->
+    <button class="btn btn-success" ng-if="tabUpdate" ng-click="enviar()"><i class="fa fa-plus"></i> Enviar Cadastro para o PRONAMPE</button>
+  </div>
+  
+</div>
+
+<script type="text/ng-template" id="alert.html">
+  <div ng-transclude></div>
+</script>

@@ -1,0 +1,28 @@
+<a href class="dropdown-toggle" data-toggle="dropdown"  tooltip-placement="bottom"  uib-tooltip="Notificações">
+  <i ng-if="vm.notificacoesNaoLidas.length > 0" class="fa fa-bell-o wiggle"></i>
+  <i ng-if="vm.notificacoesNaoLidas.length === 0" class="fa fa-bell-o"></i>
+  <span ng-if="vm.notificacoesNaoLidas.length > 0" class="label label-warning">{{ vm.notificacoesNaoLidas.length }}</span>
+</a>
+
+<ul class="dropdown-menu">
+  <li ng-if="vm.notificacoesNaoLidas.length > 0" class="header">Você possue {{ vm.notificacoesNaoLidas.length }} notificações não lidas</li>
+  <li ng-if="vm.notificacoesNaoLidas.length > 0">
+    <ul class="menu">
+      <li ng-repeat="item in vm.notificacoesNaoLidas">
+        <a ui-sref="notificacoes">
+        <i class="{{:: vm.getBuscaIcon(item.prioridade); }}"></i> {{:: item.notificacao }}
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li class="footer">
+    <a ui-sref="notificacoes"><i class="fa fa-bell-o wiggle"></i> Todas Notificações</a>
+  </li>
+</ul>
+
+<!--<li>
+  <a href="#">
+  <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
+  page and may cause design problems
+  </a>
+</li>-->

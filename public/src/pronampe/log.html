@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Dt.Cadastro</th>
+          <th>Status</th>
+          <th>Mensagem</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in mensagens">
+          <td>
+            {{:: item.dtCadastro  | date: "dd/MM/yyyy hh:mm:ss" }}<br>
+          </td>
+          <td>
+            {{:: item.status }}
+          </td>
+          <td>
+            <code>
+              {{:: item.mensagem }}
+            </code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</div>

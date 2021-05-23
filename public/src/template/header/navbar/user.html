@@ -1,0 +1,38 @@
+<a href class="dropdown-toggle" data-toggle="dropdown" tooltip-placement="bottom" uib-tooltip="Perfil">
+<img src="{{:: auth.getUser().urlImagem }}" class="user-image" alt="User Image">
+<span class="hidden-xs">{{:: auth.getUser().nome }}</span>
+</a>
+<ul class="dropdown-menu">
+  <!-- User image -->
+  <li class="user-header">
+    <img src="{{:: auth.getUser().urlImagem }}" class="img-circle" alt="User Image">
+    <p>
+      {{:: auth.getUser().nome }}
+      <small>{{:: auth.getUser().email }}</small>
+    </p>
+  </li>
+
+  <!-- Menu Body 
+  <li class="user-body">
+    <div class="row">
+      <div class="col-xs-4 text-center">
+        <a href>Seguidores</a>
+      </div>
+      <div class="col-xs-4 text-center">
+        <a href>Vendas</a>
+      </div>
+      <div class="col-xs-4 text-center">
+        <a href>Amigos</a>
+      </div>
+    </div>
+  </li>-->
+
+  <li class="user-footer">
+    <div class="pull-left">
+      <a ui-sref="usuarios" class="btn btn-default btn-flat">Perfil</a>
+    </div>
+    <div class="pull-right">
+      <a href="#" class="btn btn-default btn-flat" ng-click="auth.logout()">Sair</a>
+    </div>
+  </li>
+</ul>

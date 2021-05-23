@@ -1,0 +1,59 @@
+<content-header name="Cadastros" small="Fundo Garantidor para Investimento PEAC"></content-header>
+
+<section class="content">
+   <div class="nav-tabs-custom">
+     <ul class="nav nav-tabs">
+       <li ng-if="vm.tabList" ng-class="{active: vm.tabList}">
+          <a href data-target="#tabLists" data-toggle="tab">
+            <i class="fa fa-bars"></i> Lista
+         </a>
+      </li>
+      <li ng-if="vm.tabCreate">
+         <a href data-target="#tabCreates" data-toggle="tab">
+            <i class="fa fa-plus"></i> Incluir
+         </a>
+      </li>
+      <li ng-if="vm.tabUpdate" ng-class="{active: vm.tabUpdate}">
+         <a href data-target="#tabUpdate" data-toggle="tab">
+            <i class="fa fa-pencil"></i> Cadastro
+         </a>
+      </li>
+      <li ng-if="vm.tabUpdate">
+         <a href data-target="#tabLog" data-toggle="tab">
+            <i class="fa fa-list-ul"></i> Log de Envio
+         </a>
+      </li>
+       <li ng-if="vm.tabDelete" ng-class="{active: vm.tabDelete}">
+          <a href data-target="#tabDelete" data-toggle="tab">
+            <i class="fa fa-trash-o"></i> Excluir
+         </a>
+      </li>
+     </ul>
+
+     <div class="tab-content">
+       <div class="tab-pane"
+           id="tabLists"
+           ng-if="vm.tabList"
+           ng-class="{active: vm.tabList}"
+           ng-include="'src/peac/list.html'"></div>
+       <div class="tab-pane"
+           id="tabCreates"
+           ng-if="vm.tabCreate"
+           ng-include="'src/peac/form.html'"></div>
+       <div class="tab-pane"
+           id="tabUpdate"
+           ng-if="vm.tabUpdate"
+           ng-class="{active: vm.tabUpdate}"
+           ng-include="'src/peac/form.html'"></div>
+      <div class="tab-pane"
+           id="tabLog"
+           ng-if="vm.tabUpdate"
+           ng-include="'src/peac/log.html'"></div>
+       <div class="tab-pane"
+           id="tabDelete"
+           ng-if="vm.tabDelete"
+           ng-class="{active: vm.tabDelete}"
+           ng-include="'src/peac/form.html'"></div>
+     </div>
+   </div>
+</section>
