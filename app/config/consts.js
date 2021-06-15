@@ -1,7 +1,7 @@
 projeto.constant('consts', {
   appName: 'FarmPlus',
   version: '1.0',
-  owner: 'Hackton Zenvia',
+  owner: 'Hackton Agro Sebrae-BA',
   author: 'Flávio Lourenço da Silva',
   year: '2021',
   site: '',
